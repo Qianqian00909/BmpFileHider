@@ -1,0 +1,27 @@
+# macOS 系统相关文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# C++ 编译生成的文件
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.lib
+*.a
+*.exe
+
+# CMake 生成的中间文件
+build/
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+
+# IDE 临时文件（例如 Xcode 或 VSCode）
+.vscode/
+.idea/
+*.xcworkspace
+*.xcuserstate
