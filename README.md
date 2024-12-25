@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a very simple task that can hide some information in a .BMP(Technically it's BMP3) file.
+BmpFileHider is a simple tool that allows you to embed and extract hidden information in a BMP (specially BMP3) file.
 
 By modifying the least significant bits of the red,green,and blue channels of each pixel in a BMP file,information is subtly hidden without being noticeable.
 
@@ -11,22 +11,28 @@ And the project provide you with two executable file.One is called *Encoder*,the
 Hope you enjoy it!
 
 ## Installation
-### Encoder
-
-When you download,you can use cmake to build this project:
+## Prerequisites
+Ensure you have `CMake` installed on your system.
+## Steps
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/BMPFileHider.git
+cd BMPFileHider
+```
+2. build the project:
 ```bash
 mkdir build && cd build
 cmake ..
 cmake --build .
 ```
-Then you'll get the executable file in ./build/src
+3. The executables will be located in the ./build/src directory:
 ```bash
 cd ..
 ./build/src/Encoder
 ./build/src/Decoder
 ```
 ## Usage
-
+### Encoder
 Fisrt you run *Encoder*.It will ask you for the path
 ```bash
 Please enter the load path:
