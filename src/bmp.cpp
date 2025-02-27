@@ -38,7 +38,7 @@ bool Bmp::Load(std::string Path)
     file.read((char *)mapptr, LineByteCalculator(Ihd.Width) * Ihd.Height);
 
     std::cout << "successfully load the bmp image!\n";
-    std::cout << "It's" << Ihd.Width << "*" << Ihd.Height << "\n";
+    std::cout << "It's " << Ihd.Width << "*" << Ihd.Height << "\n";
     return true;
 }
 
@@ -56,8 +56,13 @@ bool Bmp::GetMessage()
         std::string messagepath;
         std::cin.ignore(1, '\n');
         std::getline(std::cin, messagepath);
-        messagepath.erase(std::remove(messagepath.begin(), messagepath.end(), '\''), messagepath.end());
+        messagepath.erase(std::remove(messagepath.begin(), messagepath.end(), '\''), messagepath.end());// remove single quotes from the string
         std::ifstream file(messagepath);
+        if (!file)
+        {
+            std::cout << "Fail: Unable to open the file.";
+            return false;
+        }
         std::stringstream buffer;
         buffer << file.rdbuf();
         message = buffer.str();
@@ -67,7 +72,7 @@ bool Bmp::GetMessage()
             FileKind = 1;
         else if (messagepath[messagepath.length() - 1] == 'g' && messagepath[messagepath.length() - 2] == 'p')
             FileKind = 2; // set the file kind
-    }
+    }// if the user choose to input a file path
 
     else if (chosen == 2)
     {
@@ -76,7 +81,6 @@ bool Bmp::GetMessage()
         std::getline(std::cin, message);
         FileKind = 0;
     }
-
     else
     {
         std::cout << "Fail:The input is invalid";
@@ -102,7 +106,7 @@ bool Bmp::process()
     ub1 before;
     for (int i = 1; i <= 3; i++)
     {
-        before = mapptr[hidetomap(i)];
+        before = mapptr[hidetomap(i)];// set the first three bytes to 0
         // std::cout<<int(before)<<" "<<i<<'\n';
         before &= ub1(254);
         mapptr[hidetomap(i)] = before;
@@ -133,7 +137,7 @@ bool Bmp::process()
             before += 1;
         mapptr[hidetomap(i)] = before;
     }
-    return true;
+    return true;// if the user choose to input a message directly
 }
 
 bool Bmp::Save(std::string Path)
@@ -170,7 +174,7 @@ bool Bmp::extract()
             lenthB += '0';
     }
     ub8 len = std::bitset<64>(lenthB).to_ullong();
-    std::cout << "The message's width is" << len << ".";
+    std::cout << "The message's width is " << len << ".";
     if (FileKind == 0)
     {
         std::cout << "\n\n*********************************\n\n";
